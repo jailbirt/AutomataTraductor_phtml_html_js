@@ -42,11 +42,14 @@ sub retrieveData {  #Levanta Archivo y parsea, construye un array con todo lo qu
 
     #Validación y cosmética de archivo.
     #
-    if ($ext ne '.js') {
-       &validaPhtml($file); #Trabaja sobre tags.
+    if ($ext eq '.js') {
+       &validaJs($file); #Trabaja sobre tags.
     }
+    elsif($ext eq '.php'){
+		&validaPhp($file); #Trabaja sobre tags.
+	}
     else{
-       &validaJs($file);    #Màs complejo, trabaja linea a linea.
+       &validaPhtml($file);    #Màs complejo, trabaja linea a linea.
     }
     close(FILE);
     return @returnData;
@@ -94,13 +97,13 @@ sub validaJs { #Valida linea por linea buscando quoted text.
 		next;
 	}
          elsif ($line=~ m/.*\s*\=\s*(\"|\')(.+\s*)+(\"|\').*;$/i ){ #Matchea Variables.
-			encuentraStrings($line,'variable');
+			encuentraStrings($line,'variable','js');
         }elsif ($line=~ m/.*alert.*/gi) { #Matchea Alerts
-	                encuentraStrings($line,'alert');
+	                encuentraStrings($line,'alert','js');
         }elsif ($line=~ m/.*confirm.*/gi) { #Matchea Confirm 
-	                encuentraStrings($line,'confirm');
+	                encuentraStrings($line,'confirm','js');
         }elsif ($line=~ m/.*jselect.*/gi) { #Matchea  Select
-	                encuentraStrings($line,'select');
+	                encuentraStrings($line,'select','js');
 #ignore.}elsif ($line=~ m/(\"|\')(.+\s*)+(\"|\')/i){
 #		        encuentraStrings($line,'dudoso');
 	}else{
@@ -110,19 +113,39 @@ sub validaJs { #Valida linea por linea buscando quoted text.
    }
 }
 
+sub validaPhp { #Valida linea por linea buscando quoted text.
+   my ($line);
+   foreach $line (@lines) {
+      ##borro los comentarios al dofon, no necesitan traduccion.
+      $line=~ s/\/\/(\w+\s*)//ig;
+      if ($line ne '') {
+		chomp($line);
+        if ($line=~ m/\$*+\s*\=\s*(\"|\')(.+\s*)+(\"|\').*;$/i){ #Matchea Variables.
+			encuentraStrings($line,'variable','php');
+        }elsif ($line=~ m/.*echo.*/gi) { #Matchea Alerts
+	         encuentraStrings($line,'echo','php');
+        }
+	}else{
+		#No nos interesa.
+        }
+     }
+    
+}
+
 sub encuentraStrings { #Recibe lines matches, descompone en palabras y hace push a array para Traducir.
    my $line=$_[0];
    my $queEs=$_[1];#Debuggin. Quiero saber como fue ubicado.
+   my $ext=$_[2];
    my @matchesEntreComillasDobles =($line=~ m/"(.*)"/g); #variables
    my @matchesEntreComillasSimples =($line=~ m/'(.*)'/g); #variables
    my $palabraValidada='';
    if (@matchesEntreComillasDobles){
      foreach my $palabra (@matchesEntreComillasDobles){ #Si esta entre comillas Dobles.
-                  $palabraValidada.=&analizaPalabras($palabra,$line).' ';
+                  $palabraValidada.=&analizaPalabras($palabra,$line,$ext).' ';
      }
    } else {
    foreach my $palabra (@matchesEntreComillasSimples){#Si esta entre comillas Simples.
-                  $palabraValidada.=&analizaPalabras($palabra,$line).' ';
+                  $palabraValidada.=&analizaPalabras($palabra,$line,$ext).' ';
       }
    }
    if ($palabraValidada !~ /KOOO/g ){ # Si todas las palabras de la linea fueron aceptadas.
@@ -135,29 +158,46 @@ sub encuentraStrings { #Recibe lines matches, descompone en palabras y hace push
        $stringUTF=~ s/\+\s\w+\s\+/%/g;
        #Remuevo las palabras conformadas por + variable.valor +
        $stringUTF=~ s/\+\s\w+\.\w+\s\+/%/g;
+	   $stringUTF=~ s/\.\s\w+\s\./%/g;
+       $stringUTF=~ s/(\[.*\])|(\(\$.*\))/%/g;
        #Ente tanto que removi me quedaron % de màs, dejo uno solo. -> %" % "%%
        $stringUTF=~ s/(%"\s%|\"%%|%\s%|%%|%\s\")+/%/g;
        $stringUTF=~ s/(%"\s%|\"%%|%\s%|%%|%\s\")+/%/g;
        #Hay ', de màs, el sub-separador es el %.
        $stringUTF=~ s/', '/%/g;
+       if($stringUTF eq ''){ next;}
        push @resultArray, $line.'|'.decode_entities($stringUTF)."\n";
    }
 }
 
 sub analizaPalabras { #Concatena en palabra segun lo que recibe, KOOO es secuencia de escape.
       my $palabra = $_[0];
-      #Si tiene Urls entre parentesis.
-      #Ids|attr tipo Jquery
-      #\(\(\)\)  <- esas cosas raras, no son mensajes.
-      if ($palabra =~ m/(\/\w+\/)+/g       or
-	  $palabra =~ m/\#\w+/ig           or 
-	  $palabra =~ m/(\[\w+=.*\]).*/ig  or      
-	  $palabra =~ m/(\(\(|\)\))/ig      ) 
-      { 
-          return 'KOOO'; #llego hasta esta palabra porque falló el primer filtro.
-      }else{
-          return $palabra;
-      }
+      my $ext = $_[2];
+      my $respuesta = $palabra;
+      
+      if ($ext eq 'js'){			
+		  #Si tiene Urls entre parentesis.
+		  #Ids|attr tipo Jquery
+		  #\(\(\)\)  <- esas cosas raras, no son mensajes.
+		  if ($palabra =~ m/(\/\w+\/)+/g       or
+		  $palabra =~ m/\#\w+/ig           or 
+		  $palabra =~ m/(\[\w+=.*\]).*/ig  or      
+		  $palabra =~ m/(\(\(|\)\))/ig      ) 
+		  { 
+			$respuesta = 'KOOO'	
+		  }
+	 }else{
+		  if ($palabra =~ m/\$\w+/ig or 
+		  $palabra =~ m/OK|ERROR|NODATA/i or 
+		  $palabra =~ m/'\]\['/ig or 
+		  $palabra =~ m/'\s*\?\s*(\w|\$)/ig or 
+		  $palabra =~ m/ \\$\w\[.*\].*/ig     )
+		  { 
+			$respuesta = 'KOOO'	
+		  }
+	 }  
+       
+	 return $respuesta;
 }
 
 sub recorreTreeHTML {
