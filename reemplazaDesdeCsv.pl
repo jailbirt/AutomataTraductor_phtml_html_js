@@ -18,5 +18,5 @@ use strict;
 use HTML::TreeBuilder 3;
 use HTML::Entities;
 use Data::Dumper;
-binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
 
