@@ -1,0 +1,20 @@
+
+    a:link, a:visited {
+        color: #1D7EC7;
+        text-decoration: none;
+    }
+    div.cuadro {border: 1px solid #E4E4E4; width:96%; padding:2%; background: #F4F4F4}
+    p { margin-bottom:10px; margin-top:10px;}
+|
+    a:link, a:visited {
+        color: #1D7EC7;
+        text-decoration: none;
+    }
+    div.cuadro {border: 1px solid #E4E4E4; width:96%; padding:2%; background: #F4F4F4}
+    p { margin-bottom:10px; margin-top:10px;}
+
+Comentarios Proveedor|Comentarios Proveedor
+Comentarios Usuario|Comentarios Usuario
+Voucher|Voucher
+Ver voucher|Ver voucher
+No hay archivo disponible|No hay archivo disponible

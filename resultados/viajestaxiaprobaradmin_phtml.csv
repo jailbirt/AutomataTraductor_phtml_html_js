@@ -1,0 +1,26 @@
+
+	var proveedoresalert = &#39;&lt;?php echo $this-&gt;proveedoresalert; ?&gt;&#39;;
+|
+	var proveedoresalert = '<?php echo $this->proveedoresalert; ?>';
+
+Solicitudes|Solicitudes
+Estas son todas las solicitudes generadas. Hace click en &quot;Aprobar&quot; para enviar la solicitud al proveedor correspondiente.|Estas son todas las solicitudes generadas. Hace click en "Aprobar" para enviar la solicitud al proveedor correspondiente.
+Ticket|Ticket
+Comb.|Comb.
+Proveedor|Proveedor
+Creador|Creador
+Pasajeros|Pasajeros
+Origen / Destino|Origen / Destino
+Fecha|Fecha
+ Hora | Hora 
+Espera|Espera
+Estado|Estado
+M&aacute;s opciones|Más opciones
+&#39; . &#39;|' . '
+&#39; . &#39;|' . '
+(|(
+Origen: |Origen: 
+Destino: |Destino: 
+&nbsp;Hs.| Hs.
+Sin espera|Sin espera
+M&aacute;s info|Más info

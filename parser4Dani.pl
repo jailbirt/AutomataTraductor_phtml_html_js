@@ -20,7 +20,7 @@ if (@ARGV[0] eq '') {
 	exit;
 }
 #Variables Fijas.
-my $destPath='./resultados/';
+my $destPath='./resultados/'; #Destino de los csv *Sin Traduccion*
 my $file=@ARGV[0];
 my (@lines);
 
@@ -29,11 +29,10 @@ my @resultArray=();
 &retrieveData($file);
 #baja a archivo.
 my $result=&saveCsvData($file);
-print 'Resultado en '.$result."\n";
+print 'Archivo .csv listo para traducir depositado en '.$result."\n";
 
 sub retrieveData {  #Levanta Archivo y parsea, construye un array con todo lo que 'me interesa'
     my $file=$_[0];
-    my @returnData=();
 
     open(FILE, "<$file"); 
     @lines = <FILE>;
@@ -52,7 +51,6 @@ sub retrieveData {  #Levanta Archivo y parsea, construye un array con todo lo qu
        &validaPhtml($file);    #Màs complejo, trabaja linea a linea.
     }
     close(FILE);
-    return @returnData;
 }
 
 sub saveCsvData {  #Recibe archivo original que esta procesando
@@ -214,15 +212,17 @@ sub recorreTreeHTML {
 		 #parentesis, etc.
                  #?> 
 	     if ( $content ne '' and $content !~ m/^\s+$/ and $content !~ m/.*\?>\s*$/ and 
-		  $content !~ m/\s*\/\/*/g and $content !~ m/\$\(.*/g and $content !~ m/(if|else).*/g and 
-		  $content !~ m/(\(|\[|\$|&nbsp;)(\W|\s)*/g and $content !~ m/(\)|\]|\$|&nbsp;)(\W|\s)*/g ) {
+		  $content !~ m/\s*\/\/+/g and $content !~ m/\$\(.*/g and $content !~ m/\s*(if|else)\s+/g and 
+		  $content !~ m/(\(|\[|\$|&nbsp;)(\W|\s)+/g and $content !~ m/(\)|\]|\$|&nbsp;)(\W|\s)+/g ) {
                 if ($content=~ m/alert\(/i)  { #Hay javascript con Unicode, tiene otro trato.
 	       	   my $stringUTF=&desUnicode($content);
                    push @resultArray, $content.'|'.decode_entities($stringUTF)."\n";
 		}else{
                    push @resultArray, encode_entities($content).'|'.decode_entities($content)."\n";
 	        }
-	    }
+	    }else{
+	     	  print "Lenguaje NO aceptado ->$content<-\n";
+	  }
          }
       }
 }

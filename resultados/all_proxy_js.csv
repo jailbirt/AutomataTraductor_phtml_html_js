@@ -1,0 +1,240 @@
+$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+	if(actpass != '' && newpass != '' && newpassconfirm != '') {	|' && newpass != '' && newpassconfirm != ' 
+							jAlert('Se cambi&oacute; la contrase&ntilde;a con &eacute;xito', 'Cambio contrase\u00f1a');|Se cambió la contraseña con éxito%Cambio contraseña 
+							jAlert(data, 'Cambio contrase\u00f1a');|Cambio contraseña 
+				jAlert('La nueva contrase&ntilde;a y su confirmaci&oacute;n deben ser iguales', 'Cambio contrase\u00f1a');|La nueva contraseña y su confirmación deben ser iguales%Cambio contraseña 
+			jAlert('La contrase&ntilde;a debe ser de 8 caracteres', 'Cambio contrase\u00f1a');|La contraseña debe ser de 8 caracteres%Cambio contraseña 
+		jAlert('Debes completar todos los datos', 'Cambio contrase\u00f1a');|Debes completar todos los datos%Cambio contraseña 
+		$(this).html("Click aqui! <div class='hijo' style='display:none'>"+content+"</div>");|Click aqui! <div class='hijo' style='display:none'>"+content+"% 
+		var html = "<div id=\"infoglobo\"><b>" + parts[3] + "<b><br>" + parts[4] + " " + parts[5] + "<br>" + parts[7] + "<br>" + parts[8] + "</div>";|%" + parts% + "% 
+		var html = "<div id=\"infoglobo\"><b>" + nombre + "<b><br>" + calle + " " + numone + "<br>" + localidad + "<br>" + provincia + "</div>";|%" % %% 
+	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+	side_bar_html += '<a href="javascript:myclick(' + i + ');">' + name + '<\/a><br>';|javascript:myclick(' % '); 
+	side_bar_html += '<a href="javascript:myclick(' + i + ');">' + name + '<\/a><br>';|javascript:myclick(' % '); 
+	side_bar_html += '<a href="javascript:myclick(' + i + ');">' + name + '<\/a><br>';|javascript:myclick(' % '); 
+            var textodrag = "<div id=\"infoglobo\">Si esta es la ubicaci&oacute;n correcta confirm&aacute; haciendo click <br />  <b ><a href=\"javascript:confirmarDomicilioUsuario();\">AQU&Iacute;</a></b><br /> Sino, continu&aacute; arrastrando la casita";            |%Si esta es la ubicación correcta confirmá haciendo click %  %AQUÍ% Sino, continuá arrastrando la casita 
+    	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+    	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+			alert("Direcci\u00f3n confirmada, muchas gracias. \n Click en Aceptar para volver a Mi Ubiaci\u00f3n.");|Dirección confirmada, muchas gracias. \n Click en Aceptar para volver a Mi Ubiación. 
+	alert("Se cargarï¿½ la distribuciï¿½n geografica");|Se cargarï¿½ la distribuciï¿½n geografica 
+	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+    	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+				    var htmlquizas = "Quiz&aacute;s quiso decir:";|Quizás quiso decir: 
+						htmlquizas += "<br />" + (i+1)+ ": <a href=\"javascript:confirmAddressRecursive(" + p[1] + "," + p[0] + ", '" + resultcall + "'); \" >" + result.Placemark[i].address + "</a>"; |%" + (i+1)+ ": <a href=\"javascript:confirmAddressRecursive(" + p%.address + "% 
+				jAlert('La direcci&oacute;n ingresada no fue reconocida. Por favor reingres&aacute; de la siguiente manera, ej.: Av Monroe 2000, Capital Federal. Si el problema persiste, podr&aacute;s ingresar solamente la localidad o barrio de referencia, ej: Mor&oacute;n, Buenos Aires o Belgrano, Capital Federal.','Error de carga');|La dirección ingresada no fue reconocida. Por favor reingresá de la siguiente manera, ej.: Av Monroe 2000, Capital Federal. Si el problema persiste, podrás ingresar solamente la localidad o barrio de referencia, ej: Morón, Buenos Aires o Belgrano, Capital Federal.','Error de carga 
+    var letters = '0123456789ABCDEF'.split('');|0123456789ABCDEF'.split(' 
+    var color = '#';|# 
+     $.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	 jConfirm('Clickeando SI, se enviar&aacute; un mail de contacto a tu compa&ntilde;ero para ponerse en contacto y coordinar el viaje. Gracias!'   |Clickeando SI, se enviará un mail de contacto a tu compañero para ponerse en contacto y coordinar el viaje. Gracias! 
+     $.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	 jConfirm('Clickeando SI, se enviar&aacute; un mail de contacto a tu compa&ntilde;ero para ponerse en contacto y coordinar el viaje. Gracias!'   |Clickeando SI, se enviará un mail de contacto a tu compañero para ponerse en contacto y coordinar el viaje. Gracias! 
+		var html = '<div id="infoglobo"><b>Mi Domicilio</b><br><a href="javascript:zoomDomicilio(' + latdomic + ', ' + lngdomic + ')">Hacer Zoom</a></div>';|infoglobo">%Mi Domicilio%<a href="javascript:zoomDomicilio(' % % % ') 
+		a = "from: "+a + " to: " + b;|from: "+a + " to:  
+		var html = "<div id=\"infoglobo\">Arrastrame hasta la ubicaci&oacute;n correcta de tu domiclio. <br /> Si este es tu domicilio confirmalo haciendo click <br />  <b ><a href=\"javascript:confirmarDomicilio();\">AQU&Iacute;</a></b>";|%Arrastrame hasta la ubicación correcta de tu domiclio. % Si este es tu domicilio confirmalo haciendo click %  %AQUÍ% 
+			else alert("Estoy en ObtenerCalle y no se pudo obtener una direccion del punto seleccionado. Ubique el punto sobre una calle para mayor precision");|Estoy en ObtenerCalle y no se pudo obtener una direccion del punto seleccionado. Ubique el punto sobre una calle para mayor precision 
+		alert("Ud. ya agrego a ese compa\u00f1ero");		|Ud. ya agrego a ese compañero 
+	var companeroshtml = "<table width=\"300\">";|% 
+	companeroshtml += "</table>";|% 
+    var localcomp = "local" + saldest;|local 
+				var html = "<div id=\"infoglobo\"><b>Salida</b></div>";|%Salida% 
+                $.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+                jConfirm('Desea guardar esta direcci&oacute;n en Mis Lugares? <br />' + |Desea guardar esta dirección en Mis Lugares? % 
+				var html = "<div id=\"infoglobo\"><b>Destino</b></div>";|%Destino% 
+                $.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+				jConfirm('Desea guardar esta direcci&oacute;n en Mis Lugares? <br />' + |Desea guardar esta dirección en Mis Lugares? % 
+				var html = "<div id=\"infoglobo\"><b>Nuevo lugar predeterminado</b></div>";|%Nuevo lugar predeterminado% 
+	a = "from: "+a + " to: " + b;|from: "+a + " to:  
+	var html = "<div id=\"infoglobo\"><b>" + nom + "</b><br />" + dir + "</div>";|%" % 
+	var html = "<div id=\"infoglobo\"><b>" + nom + "</b><br />" + dir + "</div>";|%" % 
+	var html = "<div id=\"infoglobo\"><b>" + nom + "</b><br />" + dir + "</div>";|%" % 
+				jAlert('Ya tiene cargado un lugar con ese nombre', 'Mis Lugares Predeterminados');|Ya tiene cargado un lugar con ese nombre%Mis Lugares Predeterminados 
+                jAlert('No se encontr&oacute; el lugar');|No se encontró el lugar 
+        var msgerror = '<ul class=\"messages\"><li class=\"error-msg\">';|messages\"><li class=\"error-msg\ 
+            msgerror += '<ul><li>' + errs[i] + '</li></ul>';|%' + errs% + '% 
+        msgerror += '</ul></li>';|% 
+		$.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+        errs[errs.length] = 'Debe poner un nombre al viaje';|Debe poner un nombre al viaje 
+                errs[errs.length] = 'Ya existe ese nombre para un viaje';|Ya existe ese nombre para un viaje 
+            errs[errs.length] = 'La fecha del viaje no puede estar vac&iacute;a';|La fecha del viaje no puede estar vacía 
+        var msgerror = '<ul class=\"messages\"><li class=\"error-msg\">';|messages\"><li class=\"error-msg\ 
+            msgerror += '<ul><li>' + errs[i] + '</li></ul>';|%' + errs% + '% 
+        msgerror += '</ul></li>';|% 
+        errs[errs.length] = 'La fecha del viaje no puede estar vac&iacute;a';|La fecha del viaje no puede estar vacía 
+		alert("la cantaidad de plinePoints es " + pLinePoints.length );|la cantaidad de plinePoints es  
+		a = window.confirm('Eliminar a viagem?');|Eliminar a viagem? 
+		a = window.confirm('Eliminar el viaje?');|Eliminar el viaje? 
+		a = window.confirm('eliminar a carona?');|eliminar a carona? 
+		a = window.confirm('eliminar el pool?');|eliminar el pool? 
+		a = window.confirm('eliminar o contato?');|eliminar o contato? 
+		a = window.confirm('eliminar el contacto?');|eliminar el contacto? 
+		a = window.confirm('recusar o convite?');|recusar o convite? 
+		a = window.confirm('rechazar la invitacion?');|rechazar la invitacion? 
+		alert("Este viaje tiene un pool asociado, debe eliminar el o los pools asociados para poder modificarlo");|Este viaje tiene un pool asociado, debe eliminar el o los pools asociados para poder modificarlo 
+		alert("Este viaje tiene un pool asociado, debe eliminar el o los pools asociados para poder modificarlo");|Este viaje tiene un pool asociado, debe eliminar el o los pools asociados para poder modificarlo 
+		alert("Esta viagem tem uma carona asociada");|Esta viagem tem uma carona asociada 
+		alert("Este viaje tiene un pool asociado");|Este viaje tiene un pool asociado 
+	window.location = 'http:.viapool.com';|http:.viapool.com 
+	window.location = 'http:.viapool.com';|http:.viapool.com 
+	var opciones="toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, width=508, height=365, top=85, left=140";|toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, width=508, height=365, top=85, left=140 
+						dire += ' ' + this.numero;|  
+					dire += ', ' + this.localidad + ', ' + this.provincia;|, ' % ',  
+					alert("Proxima direccion");|Proxima direccion 
+				var html = "<div id=\"infoglobo\"><b>" + nombre + "<b><br>" + direccion + "</div>";|%" % 
+					alert('error');|error 
+				var html = "<div id=\"infoglobo\"><b>" + nombre + "<b><br>" + calle + " " + numone + "<br>" + localidad + "<br>" + provincia + "</div>";|%" % %% 
+	var html = "<div id=\"infoglobo\"><b>" + parts[3] + "<b><br>" + parts[4] + " " + parts[5] + "<br>" + parts[7] + "<br>" + parts[8] + "</div>";|%" + parts% + "% 
+    htmlfinal = "<table><tr><td><b>Empleado</b></td><td><b>Aerop. m&aacute;s cercano</b></td><td><b>Distancia</b></td></tr>";|%Empleado%Aerop. más cercano%Distancia% 
+        htmlfinal += "</table>";|% 
+			jAlert('Elija un destino distinto al de origen', 'Error de carga');		|Elija un destino distinto al de origen%Error de carga 
+        	alert("Direcci\u00f3n confirmada, muchas gracias. \n Click en Aceptar para continuar con la encuesta.");|Dirección confirmada, muchas gracias. \n Click en Aceptar para continuar con la encuesta. 
+                                jAlert('Por favor ingrese una fecha de baja');|Por favor ingrese una fecha de baja 
+				var textpasaj = '<b>Pasajeros</b><br />';|%Pasajeros% 
+						textpasaj += '(ext) ' + datapasaj[1]  + "<br />";|% 
+    	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+    	var a = "from: "+a + " to: " + b;|from: "+a + " to:  
+						jAlert(result.msg, 'Error de carga');|Error de carga 
+					jAlert('Ha ocurrido un error en el proceso, por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Error de carga');	|Ha ocurrido un error en el proceso, por favor contáctese con nuestra dirección de soporte%Error de carga 
+jConfirm('Desvincula esta solicitud?'   |Desvincula esta solicitud? 
+								jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+						jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+				var titulo = 'Nuevos Viajes a aprobar <br />';|Nuevos Viajes a aprobar % 
+				var texto = "Hay " + nuevosviajes + " viajes nuevos. <br />";|Hay " % viajes nuevos. % 
+				var link = '<b><a href="javascript:window.location.reload();">Ver</a></b>';|javascript:window.location.reload(); 
+				document.title = 'viapool - (' + nuevosviajes + ') Viajes nuevos';|viapool - (' % ') Viajes nuevos 
+				var titulo = 'Nuevos Viajes a confirmar <br />';|Nuevos Viajes a confirmar % 
+				var texto = "Hay " + nuevosviajes + " viajes nuevos. <br />";|Hay " % viajes nuevos. % 
+				var link = '<b><a href="javascript:window.location.reload();" >Ver</a></b>';|javascript:window.location.reload(); 
+				document.title = 'viapool - (' + nuevosviajes + ') Viajes nuevos';|viapool - (' % ') Viajes nuevos 
+			var layoutCron = '<b>{mnn}:{snn}</b>';|%{mnn}:{snn}% 
+				var titulo = 'Expiro el tiempo para confirmar el ticket ' + ticketReas  + ' <br />';|Expiro el tiempo para confirmar el ticket ' + ticketReas  + ' % 
+				var texto = "Se lo vamos a pasar a un nuevo proveedor. <br />";|Se lo vamos a pasar a un nuevo proveedor. % 
+				var link = '<b><a href="javascript:window.location.reload();" >Ver</a></b>';|javascript:window.location.reload(); 
+							tempid = "aprobarrechazar" + codigo;|aprobarrechazar 
+							document.getElementById(tempid).innerHTML = '<em>APROBADO</em>';|%APROBADO% 
+							jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+					jAlert('Debe seleccionar un proveedor', 'Taxis y Remises');|Debe seleccionar un proveedor%Taxis y Remises 
+									jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+									jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+						jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+						jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+					jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+							tempid = "aprobarrechazar" + codigo;|aprobarrechazar 
+							document.getElementById(tempid).innerHTML = '<em>REASIGNADO</em>';|%REASIGNADO% 
+							jAlert('Viaje reasignado', 'Taxis y Remises');|Viaje reasignado%Taxis y Remises 
+							jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');            					|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+            tempid = "aprobarrechazar" + codigo;|aprobarrechazar 
+            document.getElementById(tempid).innerHTML = '<em>RECHAZADO</em>';|%RECHAZADO% 
+			jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises'); 	   |Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+						tempid = "confirmarrechazar" + codigo;|confirmarrechazar 
+						var html = '<em>CONFIRMADO</em>';|%CONFIRMADO% 
+							jAlert('El ticket ha cambiado de estado. Presione F5 para actualizar la lista de tickets', 'Taxis y Remises');            					|El ticket ha cambiado de estado. Presione F5 para actualizar la lista de tickets%Taxis y Remises 
+				   			jAlert('El ticket se encuentra actualmente asignado a otro proveedor. Presione F5 para actualizar la lista de tickets', 'Taxis y Remises');|El ticket se encuentra actualmente asignado a otro proveedor. Presione F5 para actualizar la lista de tickets%Taxis y Remises 
+				   			jAlert('Ha ocurrido un error en el sistema. Por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');|Ha ocurrido un error en el sistema. Por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+jConfirm('Combina los viajes seleccionados?'   |Combina los viajes seleccionados? 
+									jAlert('Se combinaron los viajes seleccionados', 'Taxis y Remises'); |Se combinaron los viajes seleccionados%Taxis y Remises 
+										jAlert('Los viajes seleccionados ya se encuentran combinados en grupos diferentes', 'Taxis y Remises');							|Los viajes seleccionados ya se encuentran combinados en grupos diferentes%Taxis y Remises 
+										jAlert('La cantidad de pasajeros de los viajes seleccionados supera el mï¿½ximo permitido por auto', 'Taxis y Remises');            				   |La cantidad de pasajeros de los viajes seleccionados supera el mï¿½ximo permitido por auto%Taxis y Remises 
+										jAlert('Los viajes seleccionados corresponden a proveedores diferentes', 'Taxis y Remises');								|Los viajes seleccionados corresponden a proveedores diferentes%Taxis y Remises 
+										jAlert('Hubo un error en el proceso', 'Taxis y Remises');	   									|Hubo un error en el proceso%Taxis y Remises 
+								jAlert('Los viajes seleccionados ya se encuentran combinados en grupos diferentes', 'Taxis y Remises');							|Los viajes seleccionados ya se encuentran combinados en grupos diferentes%Taxis y Remises 
+								jAlert('La cantidad de pasajeros de los viajes seleccionados supera el mï¿½ximo permitido por auto', 'Taxis y Remises');            				   |La cantidad de pasajeros de los viajes seleccionados supera el mï¿½ximo permitido por auto%Taxis y Remises 
+								jAlert('Los viajes seleccionados corresponden a proveedores diferentes', 'Taxis y Remises');								|Los viajes seleccionados corresponden a proveedores diferentes%Taxis y Remises 
+								jAlert('Hubo un error en el proceso', 'Taxis y Remises');	   									|Hubo un error en el proceso%Taxis y Remises 
+				jAlert('Debe seleccionar al menos 2 viajes para combinar', 'Taxis y Remises');            |Debe seleccionar al menos 2 viajes para combinar%Taxis y Remises 
+    $.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+            tempid = "confirmarrechazar" + mviaje;|confirmarrechazar 
+            jAlert('Se finali&oacute; el taxi', 'Taxis y Remises');            |Se finalió el taxi%Taxis y Remises 
+			jAlert('Se cre&oacute; la nueva factura', 'Taxis y Remises');		|Se creó la nueva factura%Taxis y Remises 
+			jAlert('Ya existe una factura con ese Nro. / Nombre', 'Taxis y Remises');		|Ya existe una factura con ese Nro. / Nombre%Taxis y Remises 
+	$.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	jConfirm('Aplica otra regla a este viaje?'|Aplica otra regla a este viaje? 
+						$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+						jAlert(response.msg, 'Error de carga');			|Error de carga 
+	$.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	jConfirm('Aplica otra tarifa a este viaje?'   |Aplica otra tarifa a este viaje? 
+							$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+							jAlert(response.msg, 'Error de carga');				|Error de carga 
+		jAlert('Debe elegir al menos un viaje a desvincular', 'Error de carga');|Debe elegir al menos un viaje a desvincular%Error de carga 
+		jAlert('Debe elegir al menos un viaje a desvincular', 'Error de carga');|Debe elegir al menos un viaje a desvincular%Error de carga 
+		jAlert('Seleccione una empresa','Taxis y Remises');|Seleccione una empresa','Taxis y Remises 
+		jAlert('Compruebe el numero de factura, el formato es XXXX-XXXXXXXX','Taxis y Remises');|Compruebe el numero de factura, el formato es XXXX-XXXXXXXX','Taxis y Remises 
+			}else{ jAlert(error.msg,'Taxis y Remises');	}|Taxis y Remises 
+		jAlert('Seleccione una empresa','Taxis y Remises');|Seleccione una empresa','Taxis y Remises 
+		jAlert('Compruebe el numero de la orden de compra.','Taxis y Remises');|Compruebe el numero de la orden de compra.','Taxis y Remises 
+		jAlert('Compruebe la fecha de la orden de compra.','Taxis y Remises');|Compruebe la fecha de la orden de compra.','Taxis y Remises 
+			}else{ jAlert(error.msg,'Taxis y Remises');	}|Taxis y Remises 
+				$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+		errores[0]='A ocurrido un error, comuniquese con soporte' ;|A ocurrido un error, comuniquese con soporte 
+        errores[1]='No se a inicializado el tamaï¿½o de archivo.' ;|No se a inicializado el tamaï¿½o de archivo. 
+        errores[2]='A ocurrido un error; comuniquese con soporte' ;|A ocurrido un error; comuniquese con soporte 
+        errores[3]='A ocurrido un error; comuniquese con soporte' ;|A ocurrido un error; comuniquese con soporte 
+        errores[4]='No a agregado un archivo.' ;|No a agregado un archivo. 
+        errores[5]='No hay un directorio asignado; comuniquese con soporte.' ;|No hay un directorio asignado; comuniquese con soporte. 
+        errores[6]='El archivo no puede escribirse.' ;|El archivo no puede escribirse. 
+        errores[7]='El tipo de archivo no es valido; debe ser imagen; texto o pdf.' ;|El tipo de archivo no es valido; debe ser imagen; texto o pdf. 
+        errores[8]='A ocurrido un error; comuniquese con soporte' ;|A ocurrido un error; comuniquese con soporte 
+        errores[9]='Archivo no encontrado.' ;|Archivo no encontrado. 
+        errores[10]='El tipo de archivo no es valido; debe ser imagen; texto o pdf.' ;|El tipo de archivo no es valido; debe ser imagen; texto o pdf. 
+        errores[11]='No se detecta el tipo de archivo; intentelo nuevamente.' ;|No se detecta el tipo de archivo; intentelo nuevamente. 
+        errores[12]='El archivo no tiene los permisos de lectura' ;|El archivo no tiene los permisos de lectura 
+        errores[13]='A ocurrido un error; comuniquese con soporte' ;|A ocurrido un error; comuniquese con soporte 
+        errores[14]='A ocurrido un error; comuniquese con soporte' ;|A ocurrido un error; comuniquese con soporte 
+        errores[99]='A ocurrido un error; comuniquese con soporte' ;|A ocurrido un error; comuniquese con soporte 
+        errores[98]='El archivo se a guardado correctamente.' ;|El archivo se a guardado correctamente. 
+        errores[97]='Error al guardar los datos en la base.' ;|Error al guardar los datos en la base. 
+		jAlert(errores[error], "taxis y remises");|taxis y remises 
+		jAlert('Error en la linea '+parts[0] + ' verifique el siguiente campo ' + parts[1] + '\r\n' + parts[2], "taxis y remises");|taxis y remises 
+	jConfirm('Guarda los cambios?'|Guarda los cambios? 
+					$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+					jAlert('Se guardaron los datos de facturaci&oacute;n', 'Taxis y Remises');            |Se guardaron los datos de facturación%Taxis y Remises 
+	$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+						$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+												$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+												jAlert(result.msg, 'Error de carga');				|Error de carga 
+											jAlert('Ha ocurrido un error en el proceso, por favor cont&aacute;ctese con soporte', 'Error de carga');|Ha ocurrido un error en el proceso, por favor contáctese con soporte%Error de carga 
+									jAlert('Debe seleccionar una factura de la lista', 'Error de carga');|Debe seleccionar una factura de la lista%Error de carga 
+				jAlert(result.msg, 'Error de carga');|Error de carga 
+			jAlert('Ha ocurrido un error en el proceso, por favor cont&aacute;ctese con soporte', 'Error de carga');|Ha ocurrido un error en el proceso, por favor contáctese con soporte%Error de carga 
+	$.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	jConfirm('Cierra la factura?'   |Cierra la factura? 
+	$.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	jConfirm('Aprueba la factura?'   |Aprueba la factura? 
+	$.alerts.okButton = '&nbsp;SI&nbsp;';| SI  
+	jConfirm('Rechaza el viaje?'   |Rechaza el viaje? 
+					$.alerts.okButton = '&nbsp;ACEPTAR&nbsp;';| ACEPTAR  
+						jAlert(data.msg, 'Taxis y Remises');|Taxis y Remises 
+					jAlert('Ha ocurrido un error en el proceso, por favor cont&aacute;ctese con nuestra direcci&oacute;n de soporte', 'Taxis y Remises');|Ha ocurrido un error en el proceso, por favor contáctese con nuestra dirección de soporte%Taxis y Remises 
+					jAlert('Reporte generado', 'Reportes remises');|Reporte generado%Reportes remises 
+					jAlert('Hubo errores al generar el reporte', 'Reportes remises');|Hubo errores al generar el reporte%Reportes remises 
+    var html = '<tr>';|% 
+        html += '<th class="periodos-tit">'+capitaliseFirstLetter(index)+'</th>';|periodos-tit 
+    html += '</tr>';|% 
+            var html = '<tr>';|% 
+                    this['hasta'] = 'Vigente';|hasta'] = 'Vigente 
+                html += '<td class="periodos-info">'+this[index]+'</td>';|periodos-info 
+            html += '</tr>';|% 
+                        '<option value="0">-- Elija una tarifa --</option>');|0 
+                            '<option value='+ this.code +'>'+ this.label +'</option>');|<option value='%'>'%'% 
+        jAlert('Selecciona un proveedor','Aviso');|Selecciona un proveedor','Aviso 
+            jAlert('Debe ingresar un proveedor','Aviso');|Debe ingresar un proveedor','Aviso 
+    jAlert ('La fecha ingresada no puede ser utilizada para una nueva tarifa', 'Nueva Tarifa');|La fecha ingresada no puede ser utilizada para una nueva tarifa%Nueva Tarifa 
+    jAlert ('Debe completar todos los campos','Campos Obligatorios');|Debe completar todos los campos','Campos Obligatorios 
+        jAlert('Debes ingregar un nombre para la nueva tarifa&iacute;a','Nueva Tarifa');|Debes ingregar un nombre para la nueva tarifaía','Nueva Tarifa 
+                    jAlert(responce,'Nueva Tarifa');|Nueva Tarifa 
+        } else jAlert('Ya existe una tarifa con ese nombre','Nueva Tarifa');|Ya existe una tarifa con ese nombre','Nueva Tarifa 
+                        '<option value="0">-- Elija una regla --</option>');|0 
+                            '<option value='+ this.code +'>'+ this.label +'</option>');|<option value='%'>'%'% 
+        jAlert('Selecciona un proveedor','Aviso');|Selecciona un proveedor','Aviso 
+            jAlert('Debe ingresar un proveedor','Aviso');|Debe ingresar un proveedor','Aviso 
+					jAlert('Se a producido un error al editar el registro.','Editar Regla');	|Se a producido un error al editar el registro.','Editar Regla 
+				jAlert('La regla se edito correctamente.','Editar Regla');|La regla se edito correctamente.','Editar Regla 
+		jAlert('Complete el nombre de la regla','Editar Valor Regla');|Complete el nombre de la regla','Editar Valor Regla 
+					jAlert('Se a producido un error al editar el registro.','Editar Tarifa');	|Se a producido un error al editar el registro.','Editar Tarifa 
+				jAlert('La tarifa se edito correctamente.','Editar Tarifa');|La tarifa se edito correctamente.','Editar Tarifa 
+		jAlert('Complete el nombre de la tarifa','Editar Valor Tarifa');|Complete el nombre de la tarifa','Editar Valor Tarifa 
+        if (nuevoDesde<=ultDesde){ jAlert ('La fecha ingresada no puede ser utilizada para una nueva regla', 'Nueva Regla'); }|La fecha ingresada no puede ser utilizada para una nueva regla%Nueva Regla 
+        else if (!desde || !precio) { jAlert ('Debe completar todos los campos','Campos Obligatorios'); }|Debe completar todos los campos','Campos Obligatorios 
+                    jAlert(responce,'Agregar Valor Regla');|Agregar Valor Regla 
+        jAlert('Debes ingregar un nombre para la nueva regla','Nueva Regla Precio');|Debes ingregar un nombre para la nueva regla','Nueva Regla Precio 
+                    jAlert(responce,'Nueva Regla');|Nueva Regla 
+        } else jAlert('Ya existe una regla con ese nombre','Nueva Regla Precio');|Ya existe una regla con ese nombre','Nueva Regla Precio 

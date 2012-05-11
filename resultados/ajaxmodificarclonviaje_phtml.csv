@@ -1,0 +1,51 @@
+
+    div.viajetaxiclonar { 
+        padding:20px;
+        border: solid 1px #D0D0D0;
+        background-color: #F1F1F1;
+    }
+    .viajetaxiclonar tr {
+        margin-bottom: 5px;
+    }
+    h3 { 
+        margin-bottom: 10px; 
+        margin-top: 10px; 
+    }
+
+|
+    div.viajetaxiclonar { 
+        padding:20px;
+        border: solid 1px #D0D0D0;
+        background-color: #F1F1F1;
+    }
+    .viajetaxiclonar tr {
+        margin-bottom: 5px;
+    }
+    h3 { 
+        margin-bottom: 10px; 
+        margin-top: 10px; 
+    }
+
+
+Viaje a Repetir |Viaje a Repetir 
+Origen : |Origen : 
+Destino : |Destino : 
+Fechas|Fechas
+ Desde | Desde 
+ Hasta | Hasta 
+ D&iacute;as | Días 
+Lu|Lu
+Ma|Ma
+Mi|Mi
+Ju|Ju
+Vi|Vi
+Sa|Sa
+Do|Do
+Hora de Salida|Hora de Salida
+ Con Espera | Con Espera 
+conespera ? &#39;checked=&quot;checked&quot;&#39; : &#39;&#39;?&gt; value=&quot;conespera&quot;&gt; |conespera ? 'checked="checked"' : ''?> value="conespera"> 
+hs|hs
+mins|mins
+ Tel&eacute;fono de Contacto| Teléfono de Contacto
+Motivo Viaje|Motivo Viaje
+ Comentarios | Comentarios 
