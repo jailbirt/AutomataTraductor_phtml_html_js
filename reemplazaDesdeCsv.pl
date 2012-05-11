@@ -20,10 +20,6 @@ use strict;
 use HTML::TreeBuilder 3;
 use HTML::Entities;
 use Data::Dumper;
-<<<<<<< HEAD
-binmode(STDOUT, ':utf8');
-=======
->>>>>>> development
 
 if (@ARGV[0] eq '' or @ARGV[1] eq '') {
         print "something failed \n execute i.e parser4Dani.pl scripts/script.js ";
