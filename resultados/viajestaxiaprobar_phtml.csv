@@ -1,0 +1,34 @@
+
+	var proveedoresalert = &#39;&lt;?php echo $this-&gt;proveedoresalert; ?&gt;&#39;;
+|
+	var proveedoresalert = '<?php echo $this->proveedoresalert; ?>';
+
+Solicitudes|Solicitudes
+Estas son todas las solicitudes generadas. Hace click en &quot;|Estas son todas las solicitudes generadas. Hace click en "
+ Podes ordenar los viajes por ticket, fecha o proveedor haciendo click en el t&iacute;tulo de las correspondientes columnas. | Podes ordenar los viajes por ticket, fecha o proveedor haciendo click en el título de las correspondientes columnas. 
+Resultdos por p&aacute;gina:|Resultdos por página:
+Ticket|Ticket
+Comb.|Comb.
+Creador|Creador
+Pasajeros|Pasajeros
+Origen / Destino|Origen / Destino
+Fecha|Fecha
+ Hora | Hora 
+Espera|Espera
+Estado|Estado
+Proveedor|Proveedor
+M&aacute;s opciones|Más opciones
+C|C
+&#39; . &#39;|' . '
+&#39; . &#39;|' . '
+(|(
+O: |O: 
+D: |D: 
+&nbsp;Hs.| Hs.
+Sin espera|Sin espera
+RECHAZAR|RECHAZAR
+REASIGNAR|REASIGNAR
+Cancelar|Cancelar
+Cancelar|Cancelar
+M&aacute;s info|Más info
+Comb|Comb

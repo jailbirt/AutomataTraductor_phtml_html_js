@@ -1,0 +1,28 @@
+Ticket |Ticket 
+ Fecha | Fecha 
+ Hora| Hora
+Rechaz.|Rechaz.
+ Imp. | Imp. 
+ Comb| Comb
+Pasajeros|Pasajeros
+Origen |Origen 
+ Destino| Destino
+Tarifa |Tarifa 
+ Tipo Viaje| Tipo Viaje
+Dis Est |Dis Est 
+ Vuelta| Vuelta
+Recorrido Espera|Recorrido Espera
+Estac. Peaje|Estac. Peaje
+Chofer Voucher|Chofer Voucher
+Fact.|Fact.
+&nbsp;Hs. | Hs. 
+Rechazado|Rechazado
+ SI | SI 
+ NO | NO 
+(|(
+O: |O: 
+D: |D: 
+Km|Km
+ /&gt; | /> 
+&nbsp;Km.| Km.
+&nbsp;Min | Min 
