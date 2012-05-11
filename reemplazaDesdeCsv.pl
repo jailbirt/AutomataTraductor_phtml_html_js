@@ -29,14 +29,16 @@ if (@ARGV[0] eq '' or @ARGV[1] eq '') {
 #Variables Fijas.
 my $destPath='./resultados/'; #Destino de 
 my $archivoFuente=@ARGV[0];
+chomp ($archivoFuente);
 my $csv=@ARGV[1];
+chomp ($csv);
 my @sourceLines=(); #Array con archivo fuente.
 my @csvLines=();    #Array con archivo csv.
 my @csvMatrix=();    #Matriz con archivo csv, columans por separador.
 my @resultArray=(); #Array con resultados.
 
 #Variables Custom.
-my $delimitador=';';
+my $delimitador='\|';
 
 #Main.
 my $extension=&retrieveData($archivoFuente,$csv);#Alimenta Arrays con csv y archivo fuente.
@@ -45,10 +47,33 @@ my $extension=&retrieveData($archivoFuente,$csv);#Alimenta Arrays con csv y arch
 
 sub traduceHtml
 {
- &ordenaLenght; #Ordeno por lenght de string a traducir.
+ &ordenaLenght; #Ordeno por lenghts strings del csv a traducir.
+    open(INPUTFILE, "<$archivoFuente"); 
+    # Open output file in write mode
+    my $sourceLines='';
+    while (<INPUTFILE>) {
+      $sourceLines.=$_;
+      #Esto junta TODO en una linea, puede deshabilitarse. chomp($sourceLines);
+    }
+ close INPUTFILE;
+ print $sourceLines;
  foreach my $row(@csvMatrix){
-         print $row->[0].' <-- reemplazar por--> '.encode_entities($row->[2])."\n";
+	 #my $command="cat $archivoFuente | sed 's#".$row->[0]."#".encode_entities($row->[2])."#g' > $archivoFuente.new";
+	 #print "\n -> COMANDO[[[[[ $command ]]]]] <- \n";
+	 #system($command);
+	 # Open input file in read mode
+           my $original=$row->[0];
+           my $traducido=encode_entities($row->[2]);
+	   $traducido =~ s/\r//g;
+	   $sourceLines =~ s/$original/$traducido/g;
+#	   print "Traducido $original con $traducido en $archivoFuente.new \n";
+#	 }
+	 
+	 
  }
+ open (OUTPUTFILE, ">$archivoFuente.new");
+ print OUTPUTFILE $sourceLines; 
+ close OUTPUTFILE;
 }
 
 #Ordeno de mayor a menor, para reemplazar, un string chico puede estar solo incluido en un string màs grande ;)
@@ -90,9 +115,11 @@ sub separaColumnasCsv { #arma matriz, separa filas en columnas.
 my @columnas=();
 my $line=0;
    foreach my $lineaCsv (@csvLines) { #Por Cada Linea del csv.
+      chomp($lineaCsv);
       @columnas=split(/$delimitador/, $lineaCsv);
       #Agrego las tres columnas a la matrix, solo si estan traducidas.
       if ($columnas[2]) {
+	print "[0]=".$columnas[0]." [1]=".$columnas[1]." [2]=".$columnas[2]."\n"; 
         push(@{$csvMatrix[$line]}, @columnas);
       }
       $line++;
