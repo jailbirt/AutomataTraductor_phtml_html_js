@@ -43,20 +43,59 @@ my $delimitador='\|';
 #Main.
 my $extension=&retrieveData($archivoFuente,$csv);#Alimenta Arrays con csv y archivo fuente.
 &separaColumnasCsv();                            #Separa en columnas 
-&traduceHtml() if ($extension =~ m/.?html/g);
 
+if ($extension =~ m/.?html/g) {
+   &traduceHtml();
+}elsif ($extension =~ m/js/g){
+   &traduceJavascript();
+}
+
+sub traduceJavascript
+{
+ my $indice = 0;
+ my $nuevoFuente='';
+ foreach my $fuenteRow ( @sourceLines) {
+     my $columna1Limpia='';
+     my $lineaDelFuenteActual=$sourceLines[$indice];#Para trabajar en un string
+     foreach my $rowCsv(@csvMatrix){
+              $columna1Limpia=$rowCsv->[0];	
+              $columna1Limpia =~ s/(^\"|\"$)//g;
+	  if ($fuenteRow =~ m/\Q$columna1Limpia\E/g ){ #Si la linea del fuente coincide con la del csv. 
+   #	  print "OKKKK PARA $fuenteRow CON $columna1Limpia <<---- \n";
+	  #!SEGUIR ACA. Falta, encodear columna 2 y 3, luego reemplazar 2 por 3 en 1.
+	  #y lo màs importante descomponer en este punto los  % %
+             my $espaniol=encode_entities($rowCsv->[1]);
+	     $espaniol=~ s/\s$//g; #Tiene un espacio de màs al final.
+             my $traducido=encode_entities($rowCsv->[2]);
+             $traducido =~ s/\r//g;
+	     if ($espaniol =~ m/%/g){
+                 my @subStringEs=split(/%/, $espaniol); #Tiene sub Strings#
+                 my @subStringNuevo=split(/%/, $traducido); #Tiene sub Strings#
+		 my $pos=0;# Los strings DEBERIAN ser iguales, respetar los %.
+		 foreach my $string (@subStringEs){
+	            my $stringTraducido=$subStringNuevo[$pos];
+		    #Solo me importan los textos human readable
+                    $lineaDelFuenteActual =~ s/\Q$string\E/$stringTraducido/g;
+	            print ">SubString>Para $lineaDelFuenteActual Reemplazo /$string/$stringTraducido/g \t y Queda $lineaDelFuenteActual <--\n";
+		    $pos++;
+		 }
+	     } else {
+	         print ">Completo> Para $lineaDelFuenteActual Reemplazo /$espaniol/$traducido/g \t y Queda $lineaDelFuenteActual <--\n";
+                 $lineaDelFuenteActual =~ s/\Q$espaniol\E/$traducido/g;
+             }
+         }
+     }
+     $nuevoFuente.=$lineaDelFuenteActual;#Agrego linea modificada o no.
+     $indice++;
+ }
+ open (OUTPUTFILE, ">$archivoFuente.new");
+ print OUTPUTFILE $nuevoFuente; 
+ close OUTPUTFILE;
+}
 sub traduceHtml
 {
  &ordenaLenght; #Ordeno por lenghts strings del csv a traducir.
-    open(INPUTFILE, "<$archivoFuente"); 
-    # Open output file in write mode
-    my $sourceLines='';
-    while (<INPUTFILE>) {
-      $sourceLines.=$_;
-      #Esto junta TODO en una linea, puede deshabilitarse. chomp($sourceLines);
-    }
- close INPUTFILE;
- print $sourceLines;
+ my $sourceLines=&levantaArchivoFuente;
  foreach my $row(@csvMatrix){
 	 #my $command="cat $archivoFuente | sed 's#".$row->[0]."#".encode_entities($row->[2])."#g' > $archivoFuente.new";
 	 #print "\n -> COMANDO[[[[[ $command ]]]]] <- \n";
@@ -66,14 +105,22 @@ sub traduceHtml
            my $traducido=encode_entities($row->[2]);
 	   $traducido =~ s/\r//g;
 	   $sourceLines =~ s/$original/$traducido/g;
-#	   print "Traducido $original con $traducido en $archivoFuente.new \n";
-#	 }
-	 
-	 
  }
  open (OUTPUTFILE, ">$archivoFuente.new");
  print OUTPUTFILE $sourceLines; 
  close OUTPUTFILE;
+}
+
+sub levantaArchivoFuente {
+    open(INPUTFILE, "<$archivoFuente"); 
+    # Open output file in write mode
+    my $sourceLines='';
+    while (<INPUTFILE>) {
+      $sourceLines.=$_;
+      #Esto junta TODO en una linea, puede deshabilitarse. chomp($sourceLines);
+    }
+    close INPUTFILE;
+    return $sourceLines;
 }
 
 #Ordeno de mayor a menor, para reemplazar, un string chico puede estar solo incluido en un string màs grande ;)
@@ -119,7 +166,7 @@ my $line=0;
       @columnas=split(/$delimitador/, $lineaCsv);
       #Agrego las tres columnas a la matrix, solo si estan traducidas.
       if ($columnas[2]) {
-	print "[0]=".$columnas[0]." [1]=".$columnas[1]." [2]=".$columnas[2]."\n"; 
+        #print "[0]=".$columnas[0]." [1]=".$columnas[1]." [2]=".$columnas[2]."\n"; 
         push(@{$csvMatrix[$line]}, @columnas);
       }
       $line++;
