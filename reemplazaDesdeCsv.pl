@@ -58,30 +58,42 @@ sub traduceJavascript
      my $columna1Limpia='';
      my $lineaDelFuenteActual=$sourceLines[$indice];#Para trabajar en un string
      foreach my $rowCsv(@csvMatrix){
-              $columna1Limpia=$rowCsv->[0];	
-              $columna1Limpia =~ s/(^\"|\"$)//g;
-	  if ($fuenteRow =~ m/\Q$columna1Limpia\E/g ){ #Si la linea del fuente coincide con la del csv. 
-   #	  print "OKKKK PARA $fuenteRow CON $columna1Limpia <<---- \n";
-	  #!SEGUIR ACA. Falta, encodear columna 2 y 3, luego reemplazar 2 por 3 en 1.
+	  $columna1Limpia=$rowCsv->[0];	
+	  $columna1Limpia =~ s/(^\"|\"$)//g;
+	  next if ( $columna1Limpia =~ m/(if|else)\s*\(/g and $columna1Limpia !~ m/Alert/ig );
+	  if ($columna1Limpia !~ m/^\s*$/g and $fuenteRow =~ m/\Q$columna1Limpia\E/g ){ #Si la linea del fuente coincide con la del csv. 
+  	  print "OKKKK PARA  [[[[ $fuenteRow ]]] CON [[[ $columna1Limpia ]]] <<---- \n";
+	  #encodea columna 2 y 3, luego reemplazar 2 por 3 en la oracion.
 	  #y lo màs importante descomponer en este punto los  % %
-             my $espaniol=encode_entities($rowCsv->[1]);
+             my $espaniol=$rowCsv->[1];
 	     $espaniol=~ s/\s$//g; #Tiene un espacio de màs al final.
-             my $traducido=encode_entities($rowCsv->[2]);
+             my $traducido=$rowCsv->[2];
              $traducido =~ s/\r//g;
 	     if ($espaniol =~ m/%/g){
                  my @subStringEs=split(/%/, $espaniol); #Tiene sub Strings#
                  my @subStringNuevo=split(/%/, $traducido); #Tiene sub Strings#
 		 my $pos=0;# Los strings DEBERIAN ser iguales, respetar los %.
 		 foreach my $string (@subStringEs){
-	            my $stringTraducido=$subStringNuevo[$pos];
+	            my $stringTraducido=encode_entities($subStringNuevo[$pos]);
+		    $stringTraducido = "$1$stringTraducido$2" if ($lineaDelFuenteActual =~ m/(&\w+;)\w+(&\w+;)/g); #Molestos Botones..
+		    $string=encode_entities($string);
+		    #Pequeño moco con algunos ',' es màs fácil resolverlo aca.
+                    $string =~ s/&#39;,&#39;/'.'/; 
+                    $stringTraducido =~ s/&#39;,&#39;/'.'/; 
 		    #Solo me importan los textos human readable
                     $lineaDelFuenteActual =~ s/\Q$string\E/$stringTraducido/g;
 	            print ">SubString>Para $lineaDelFuenteActual Reemplazo /$string/$stringTraducido/g \t y Queda $lineaDelFuenteActual <--\n";
 		    $pos++;
 		 }
 	     } else {
-	         print ">Completo> Para $lineaDelFuenteActual Reemplazo /$espaniol/$traducido/g \t y Queda $lineaDelFuenteActual <--\n";
+                 $espaniol=encode_entities($espaniol);
+                 $traducido=encode_entities($traducido);
+		 $traducido = "$1$traducido$2" if ($espaniol =~ m/(&\w+;)\w+(&\w+;)/g); #Molestos Botones.
+                 $espaniol =~ s/&#39;,&#39;/','/; 
+                 $traducido =~ s/&#39;,&#39;/','/; 
                  $lineaDelFuenteActual =~ s/\Q$espaniol\E/$traducido/g;
+	         print ">Completo> Para $lineaDelFuenteActual Reemplazo /$espaniol/$traducido/g \t y Queda $lineaDelFuenteActual <--\n";
+		 
              }
          }
      }
@@ -165,7 +177,7 @@ my $line=0;
       chomp($lineaCsv);
       @columnas=split(/$delimitador/, $lineaCsv);
       #Agrego las tres columnas a la matrix, solo si estan traducidas.
-      if ($columnas[2]) {
+      if ($columnas[2] !~ m/^\s*$/g) {
         #print "[0]=".$columnas[0]." [1]=".$columnas[1]." [2]=".$columnas[2]."\n"; 
         push(@{$csvMatrix[$line]}, @columnas);
       }
