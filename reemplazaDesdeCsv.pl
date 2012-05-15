@@ -106,19 +106,16 @@ sub traduceJavascript
 }
 sub traduceHtml
 {
- &ordenaLenght; #Ordeno por lenghts strings del csv a traducir.
+ @csvMatrix=&ordenaLenght; #Ordeno por lenghts strings del csv a traducir.
  my $sourceLines=&levantaArchivoFuente;
  foreach my $row(@csvMatrix){
-	 #my $command="cat $archivoFuente | sed 's#".$row->[0]."#".encode_entities($row->[2])."#g' > $archivoFuente.new";
-	 #print "\n -> COMANDO[[[[[ $command ]]]]] <- \n";
-	 #system($command);
 	 # Open input file in read mode
            my $original=$row->[0];
            my $traducido=encode_entities($row->[2]);
 	   $traducido =~ s/\r//g;
 	   $sourceLines =~ s/$original/$traducido/g;
  }
- open (OUTPUTFILE, ">$archivoFuente.new");
+ open (OUTPUTFILE, ">$archivoFuente");
  print OUTPUTFILE $sourceLines; 
  close OUTPUTFILE;
 }
@@ -138,20 +135,15 @@ sub levantaArchivoFuente {
 #Ordeno de mayor a menor, para reemplazar, un string chico puede estar solo incluido en un string màs grande ;)
 sub ordenaLenght
 {
-	#print "\nANTES: ";
-	# print Dumper @csvMatrix;
+  #print "\nANTES: ";
+  #print Dumper @csvMatrix;
 	
-  @csvMatrix = sort { length $b->[1] <=> length $a->[1] } @csvMatrix;
+  my @csvTemp = @csvMatrix;
+  @csvTemp = sort { length $b->[1] <=> length $a->[1] } @csvTemp;
+
   #print "\nDESPUES:";
   #print Dumper @csvMatrix;
-}
-
-sub reemplazaColumna   #Para el trato line a line, busca.
-{
- my @columnas=$_[0];
- #1. vuelvo html entities la columna traducida (numero 3).
- print $columnas[2];
- #2. reemplazo la columna3 por la columna 1
+  return @csvTemp;
 }
 
 sub retrieveData {  #Levanta Archivo y levanta csv
