@@ -1,0 +1,32 @@
+La Original Solicitudes|Solicitudes|Solicitações  
+La Original Estas son todas las solicitudes generadas. Hace click en &quot;|"Estas son todas las solicitudes generadas. Hace click en """|"Estas são todas as solicitações geradas. Clique em """ 
+La Original  Podes ordenar los viajes por ticket, fecha o proveedor haciendo click en el t&iacute;tulo de las correspondientes columnas. | Podes ordenar los viajes por ticket, fecha o proveedor haciendo click en el título de las correspondientes columnas. |Poderá ordenar as viagens por ticket, data ou fornecedor clicando no título das correspondentes colunas 
+La Original Resultdos por p&aacute;gina:|Resultdos por página:|Resultados por página: 
+La Original Ticket|Ticket|Ticket 
+La Original Comb.|Comb.|Comb. 
+La Original Creador|Creador|Criador 
+La Original Pasajeros|Pasajeros|Passageiros 
+La Original Fecha|Fecha|Data 
+La Original  Hora | Hora |Hora 
+La Original Espera|Espera|Espera 
+La Original Estado|Estado|Estado 
+La Original Proveedor|Proveedor|Fornecedor 
+La Original M&aacute;s opciones|Más opciones|Mais opções 
+La Original C|C|C 
+La Original &#39; . &#39;|' . '| 
+La Original &#39; . &#39;|' . '| 
+La Original O: |O: | 
+La Original D: |D: | 
+La Original &nbsp;Hs.| Hs.|Hr. 
+La Original Sin espera|Sin espera|Sem Espera 
+La Original RECHAZAR|RECHAZAR|RECUSAR 
+La Original REASIGNAR|REASIGNAR|REASIGNAR 
+La Original Cancelar|Cancelar|Cancelar 
+La Original Cancelar|Cancelar|cancelar 
+La Original M&aacute;s info|Más info|Mais info 
+La Original Comb|Comb|Comb. 
+La Original || 
+La Original "	var proveedoresalert = &#39;&lt;?php echo $this-&gt;proveedoresalert; ?&gt;&#39;; "|| 
+La Original "	var proveedoresalert = '<?php echo $this->proveedoresalert; ?>'; "|| 
+La Original Origen / Destino | Origen / Destino|Origem / Destino 
+La Original ( | (| 

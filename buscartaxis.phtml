@@ -1,0 +1,370 @@
+<?php   
+
+echo $this->dialogContainer('agregarviajetaxi', null, array(
+    'bgiframe' => true,
+    'autoOpen' => false,
+    'title'=> 'Carga de viaje',
+    'modal'=>true,
+    'resizable' => true,
+    'width' => 540,
+    'position' => 'top',
+    ), array()
+);
+echo $this->dialogContainer('subirseviajetaxi', null, array(
+    'bgiframe' => true,
+    'autoOpen' => false,
+    'title'=> 'Carga de viaje',
+    'modal'=>true,
+    'resizable' => true,
+    'width' => 540,
+    'position' => 'top',
+    ), array()
+);
+echo $this->dialogContainer('quizastaxis', null, array(
+    'bgiframe' => true,
+    'autoOpen' => false,
+    'title'=> 'Quizas quiso decir',
+    'modal'=>true,
+    'resizable' => true,
+    'width' => 500,
+    'position' => 'top',
+    ), array()
+);
+
+// HELPER'S
+$this->horas                            = $this->arrayHoras ();
+$this->minutos                          = $this->arrayMinutos ();
+$this->fueradehora                      = $this->esHorarioAtencionMesa ();
+$this->muestramensdisponiblemediodia    = $this->mensajeDisponibleMedioDia ();
+
+?>
+
+<?php if($this->fueradehora == 'si') { ?>
+<script>
+    alert('<?php echo $this->translate->_('mesataxisfuerahoramensaje', $this->language); ?>');
+</script>
+<?php } ?>
+
+<?php if($this->muestramensdisponiblemediodia == 'si') { ?>
+	<script>
+		alert('Si Ud. precisa remises para el momento, por favor llame directamente a las agencias. Por el d\u00eda de la fecha, dentro del horario de 12:00 a 14:15, Viapool y Urp no se encontrar\u00e1n disponibles');
+	</script>
+<?php } ?>
+
+<div id="content" style="overflow:auto;">
+    <div>
+        <h1 class='taxis-titulo'> Solicitud de <?= $this->translate->_('taxisyremises', $this->language); ?>
+            <span id="nombre-cliente"  class="darkgreen"> <?= mb_strtoupper($this->clienteactual['nombre']) ?> </span>
+        </h1>
+    </div>
+    <p><?= $this->translate->_('buscartaxistextoarriba', $this->language); ?></p>
+    <div id="box_inscripcioncharter" class="fleft">
+        <table id="buscartaxiscontainer" name="buscartaxiscontainer">
+            <tr>
+                <td align="left" valign="top">
+                    <div id="side_bar_busqueda">    
+                        <div id="buscartaxiefechahora" name="buscartaxifechahora" >
+                            <table class="buscar-taxis-form">
+                                <tr>
+                                    <th><label for="fecha" >Fecha del Viaje</label></th>
+                                    <td>
+                                        <label for="hora">Hora</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><?php if($this->proveedor != '' || $this->soymesa == 'si') { ?>
+                                        <?= $this->datePicker("fecha",
+                                        '',
+                                        array('defaultDate' => '',
+                                        'dateFormat' => 'dd/mm/yy'), array("class" => "campos autooff")); ?>
+                                        <!-- <div class="ttpfecha ttp"><a><img src="<?php echo $this->baseUrl ?>/common/images/pt_BR/tool-tip-fondo-gris.png" /></a></div>   -->                                      
+                                        <?php } else { ?>
+                                        <?= $this->datePicker("fecha",
+                                        '',
+                                        array('defaultDate' => '',
+                                        'minDate' => '',
+                                        'dateFormat' => 'dd/mm/yy'), array("class" => "campos autooff", "style" => "width: 145px")); ?>
+                                        <?php } ?>
+                                    </th>
+                                    <td>
+                                        <?php echo $this->formSelect('horas'  , null  , array('class' => 'autooff') ,  $this->horas ); ?>
+                                        <?php echo $this->formSelect('minutos', null  , array('class' => 'autooff') ,  $this->minutos ); ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="buscartaxidesde" name="buscartaxidesde" >
+                            <table class="buscar-taxis-form">
+                                <tr>
+                                    <td><label for="desdesite" class="blue-title">Origen Predefinido</label></td>
+                                    <td>
+                                        <select id="desdesite" class="autooff desdeHasta" style="" name="desdesite" 
+                                            onchange="obtenerSalidaSiteTaxi(document.getElementById('desdesite').selectedIndex - 1);"> </select>
+                                        <input id="desdesiteeleg" type="hidden" class="oculto"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="mostrardesdetexto">Escribir direcci&oacute;n</label> <input id="mostrardesdetexto" name="mostrardesdetexto" type="checkbox" onclick="mostrardesdetexto();" class="autooff" /></td>
+
+                                </tr>  
+                                </table >
+                                <div id="direccionmanualsal" name="direccionmanualsal" style="display: none;">
+                                    <table class="buscar-taxis-form">
+                                        <tr>
+                                            <td>
+                                                <label for="provinciasal">Provincia</label>
+                                                <select id="provinciasal" class="autooff" style="" name="provinciasal" onchange="obtenerLocalidadesTaxi('salida');"> </select>
+                                            </td>
+                                            <td>
+                                                <label for="localidadsal">Local. / Barrio</label>
+                                                <select id="localidadsal" class="autooff" style="max-width: 96px" name="localidadsal">
+                                                </select>
+                                            </td>
+
+                                        </tr>  
+                                        <tr>
+                                            <td>
+                                                <label for="callesal">Calle</label> 
+                                                <input id="callesal" name="callesal" type="text" value="" class="autooff autodisabled dirmansal" style="margin-left: 23px; width: 131px">
+
+                                            </td>
+                                            <td> <label for="numerosal">Nro.</label> <input id="numerosal" name="numerosal" type="text" class="autooff autodisabled dirmansal" style="margin-left: 50px; width: 90px" />	</td>
+                                        </tr>
+                                        <tr>
+                                            <td> <label for="pisosal">Piso</label> <input id="pisosal" name="pisosal" type="text" class="input-small autooff autodisabled dirmansal" style="margin-left: 26px; width: 30px" /> </td>	
+                                            <td> <label for="depto">Depto</label> <input id="deptosal" name="deptosal" type="text" class="input-small autooff autodisabled dirmansal" style="margin-left: 39px; width: 90px" /> <input type="image" name="imageField" id="imageField" src="<?php echo $this->baseUrl ?>/common/images/btn_ok.png" class="form_btn" onclick="obtenerSalidaTaxi(); return false" /> </td>										
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="buscartaxihasta" name="buscartaxihasta" >
+                                <table class="buscar-taxis-form">
+                                    <tr>
+                                        <th><label for="hastasite" class="blue-title">Destino Predefinido</label></td>
+                                        <td>
+                                            <select id="hastasite" class="autooff desdeHasta" style="" name="hastasite" 
+                                                onchange="obtenerDestinoSiteTaxi(document.getElementById('hastasite').selectedIndex - 1);"> </select>
+                                            <input id="hastasiteeleg" id="hastasiteeleg" type="hidden" class="oculto" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="mostrarhastatexto">Escribir direcci&oacute;n</label> <input id="mostrarhastatexto" name="mostrardesdetexto" type="checkbox" onclick="mostrarhastatexto();" class="autooff" /></td>
+                                    </tr>   
+                                </table>
+                                <div id="direccionmanualdest" name="direccionmanualdest" style="display: none;">
+                                    <table class="buscar-taxis-form">
+                                        <tr>
+                                            <td>
+                                                <label for="provinciadest">Provincia</label> 
+                                                <select id="provinciadest" class="autooff" style="" name="provinciadest" onchange="obtenerLocalidadesTaxi('localidaddest');"> </select>
+                                            </td>
+                                            <td>
+                                                <label for="localidaddest">Local. / Barrio</label> 
+                                                <select id="localidaddest" class="autooff" style="max-width: 96px" name="localidaddest"> </select>
+                                            </td>
+
+                                        </tr>  
+                                        <tr>
+                                            <td>
+                                                <label for="calledest">Calle</label> 
+                                                <input id="calledest" name="calledest"  type="text" value="" class="autooff autodisabled dirmandest" style="margin-left: 23px; width: 131px">
+
+                                            </td>									
+                                            <td> <label for="numerodest">Nro.</label> <input id="numerodest" name="numerodest" type="text" class="autooff autodisabled dirmandest" style="margin-left: 50px; width: 90px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <label for="piso">Piso</label> <input id="pisodest" name="pisodest" type="text" class="input-small autooff autodisabled dirmandest" style="margin-left: 26px; width: 30px" /></td>		
+                                            <td> <label for="depto">Depto</label> <input id="deptodest" name="deptodest" type="text" class="input-small autooff autodisabled dirmandest" style="margin-left: 39px; width: 90px" /> <input type="image" name="imageField" id="imageField" src="<?php echo $this->baseUrl ?>/common/images/btn_ok.png" class="form_btn" onclick="obtenerDestinoTaxi(); return false" /> </td>
+                                        </tr>
+                                    </table>  
+                                </div>
+                            </div>
+
+                            <div id="buscartaxiesperapasaj" name="buscartaxiesperapasaj" >	
+                                <table class="buscar-taxis-form">
+                                    <tr>
+                                        <td colspan="2"><label for="conespera">Con espera</label> <input id="conespera" name="conespera" value="1" type="checkbox" onclick="mostrartiempoespera();" class="autooff" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Hs</span> 
+                                            <?php echo $this->formSelect('horaespera', null  ,  array('class' => 'autooff autodisabled') ,  $this->horas ); ?>
+                                            <span>Min</span> 
+                                            <?php echo $this->formSelect('minutosespera', null  ,  array('class' => 'autooff autodisabled') ,  $this->minutos ); ?> 
+                                        </td>
+                                        <td>
+                                            <label for="cantpasajeros" >Pasajeros</label> 
+                                            <?php  echo $this->formSelect('cantpasajeros', null  ,  array('class' => 'autooff') ,  $this->cantidadPasajerosComboArray() ); ?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="buscartaxibotones" name="buscartaxibotones" >								
+                                <table class="buscar-taxis-form">
+                                    <td>
+                                        <a href="javascript:obtenerViajesTaxi();"><img src="<?php echo $this->baseUrl ?>/common/images/pt_BR/btn-buscar-one-shot.png" /></a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:refreshBusquedaTaxis();"><img src="<?php echo $this->baseUrl ?>/common/images/btnreiniciarviaje.png" /></a>
+                                    </td>                                    
+                                </table>
+                            </div>
+
+                            <input id="latsal" name="latsal" type="hidden" class="oculto autooff" />                
+                            <input id="lngsal" name="lngsal" type="hidden" class="oculto autooff" />
+                            <input id="latdest" name="latdest" type="hidden" class="oculto autooff" />                
+                            <input id="lngdest" name="lngdest" type="hidden" class="oculto autooff" /> 
+
+                            <input id="proveedor" name="proveedor" type="hidden" class="oculto" value="<?php echo $this->proveedor; ?>"  /> 
+                            <input id="soymesa" name="soymesa" type="hidden" class="oculto" value="<?php echo $this->soymesa; ?>"  />
+                            <input id="mensajesolicitudagregada" name="mensajesolicitudagregada" type="hidden" class="oculto" value="<?= $this->mensajesolicitudagregada ?>"  />
+                            <div id="pagination">
+                                <table width="130">
+                                    <tr><td colspan="3"><span class="textonegro"><div id="pagtotales"></div></span></td></tr>
+                                    <tr>
+                                        <td width="30" align="left"><div id="paganterior"></div></td>
+                                        <td align="center"><span class="textonegro"><div id="pagmostrando"></div></span></td>
+                                        <td width="30" align="right"><div id="pagsiguiente"></div></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>            
+                    </td>
+                    <td  align="right" valign="top">
+                        <div class="fright">
+                            <div id="map" style="width: 440px; height: 380px; border:1px solid black"></div>
+                            <div class="fleft" style="width:100%; text-align:left; margin-left:5px">
+                                <span><?php echo $this->translate->_('taxisrecorridoessugerido', $this->language); ?></span><br />
+                            </div>
+                            <?php if($this->muestracalculos == 1) { ?>
+                            <div id="calculos" name="calculos" class="fleft" style="margin-left:5px">
+                                <table>
+                                    <tr><td> <b><span>Distancia de viaje: </span></b></td><td><div id="distanciacalc" name="distanciacalc" style="display: inline"></div></td></tr>
+                                    <tr><td> <b><span>Tiempo de viaje: </span></b></td><td><div id="tiempocalc" name="tiempocalc" style="display: inline"></div></td></tr>
+                                </table>
+                            </div>
+                            <?php } ?>				   
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <br/>
+    </div>
+
+    <input id="usacoincidencias" name="usacoincidencias" type="hidden" value="<?php echo $this->usacoincidencias; ?>" class="oculto" />   
+    <input id="usadireccioneshomogeneas" name="usadireccioneshomogeneas" type="hidden" value="<?php echo $this->usadireccioneshomogeneas; ?>" class="oculto" />
+    <input id="validacantidadpasajerosencarga" name="validacantidadpasajerosencarga" type="hidden" value="<?php echo $this->validacantidadpasajerosencarga; ?>" class="oculto" />
+
+    <div id="formtaxi">
+        <form id="ftaxi" name="ftaxi" method="post">
+            <input id="hcallesal" name="hcallesal" type="hidden" class="oculto" />
+            <input id="hnumerosal" name="hnumerosal" type="hidden" class="oculto" />
+            <input id="hprovinciasal" name="hprovinciasal" type="hidden" class="oculto" />
+            <input id="hlocalidadsal" name="hlocalidadsal" type="hidden" class="oculto" />
+            <input id="hprovinciatextosal" name="hprovinciatextosal" type="hidden" class="oculto" />
+            <input id="hlocalidadtextosal" name="hlocalidadtextosal" type="hidden" class="oculto" />
+            <input id="hpisosal" name="hpisosal" type="hidden" class="oculto" />
+            <input id="hdeptosal" name="hdeptosal" type="hidden" class="oculto" />
+
+            <input id="hcalledest" name="hcalledest" type="hidden" class="oculto" />
+            <input id="hnumerodest" name="hnumerodest" type="hidden" class="oculto" />
+            <input id="hprovinciadest" name="hprovinciadest" type="hidden" class="oculto" />
+            <input id="hlocalidaddest" name="hlocalidaddest" type="hidden" class="oculto" />
+            <input id="hprovinciatextodest" name="hprovinciatextodest" type="hidden" class="oculto" />
+            <input id="hlocalidadtextodest" name="hlocalidadtextodest" type="hidden" class="oculto" />
+            <input id="hpisodest" name="hpisodest" type="hidden" class="oculto" />
+            <input id="hdeptodest" name="hdeptodest" type="hidden" class="oculto" />
+
+            <input id="hfecha" name="hfecha" type="hidden" class="oculto" />
+            <input id="hhorasal" name="hhorasal" type="hidden" class="oculto" />
+
+            <input id="hsalidapred" name="hsalidapred" type="hidden" class="oculto" />
+            <input id="hdestinopred" name="hdestinopred" type="hidden" class="oculto" />
+
+            <input id="hlatsal" name="hlatsal" type="hidden" class="oculto" />
+            <input id="hlngsal" name="hlngsal" type="hidden" class="oculto" />
+            <input id="hlatdest" name="hlatdest" type="hidden" class="oculto" />
+            <input id="hlngdest" name="hlngdest" type="hidden" class="oculto" />
+
+            <input id="hmotivos" name="hmotivos" type="hidden" class="oculto" />
+            <input id="hconespera" name="hconespera" type="hidden" class="oculto" />
+            <input id="hesperahora" name="hesperahora" type="hidden" class="oculto" />
+            <input id="hesperamins" name="hesperamins" type="hidden" class="oculto" />
+
+            <input id="hcomentarios" name="hcomentarios" type="hidden" class="oculto limpiar" />
+            <input id="hdistancia" name="hdistancia" type="hidden" class="oculto" />
+            <input id="htiempo" name="htiempo" type="hidden" class="oculto" />
+            <input id="htelcontacto" name="htelcontacto" type="hidden" class="oculto limpiar" />
+
+            <input id="hyoviajo" name="hyoviajo" type="hidden" class="oculto limpiar" />
+            <input id="hccyo" name="hccyo" type="hidden" class="oculto limpiar" />
+            <input id="hpasajeros" name="hpasajeros" type="hidden" class="oculto limpiar" />
+            <input id="hpasajerosext" name="hpasajerosext" type="hidden" class="oculto limpiar" />
+            <input id="hcantpasaj" name="hcantpasaj" type="hidden" class="oculto limpiar" />
+
+            <input id="hingresavuelo" name="hingresavuelo" type="hidden" class="oculto limpiar" />
+            <input id="haerolinea" name="haerolinea" type="hidden" class="oculto limpiar" />
+            <input id="hvuelo" name="hvuelo" type="hidden" class="oculto limpiar" />
+            <input id="haeropuerto" name="haeropuerto" type="hidden" class="oculto limpiar" />
+            <input id="hprocedencia" name="hprocedencia" type="hidden" class="oculto limpiar" />
+
+            <input id="hcomnoaceptacomb" name="hcomnoaceptacomb" type="hidden" class="oculto limpiar" />
+            <input id="hviajenoaceptado" name="hviajenoaceptado" type="hidden" class="oculto limpiar" />
+            <input id="hnoaceptacomb" name="hnoaceptacomb" type="hidden" class="oculto limpiar" />
+
+            <input id="hviajepadre" name="hviajepadre" type="hidden" class="oculto limpiar" /> <!-- Si esta vacio no eligio compartir, sino tiene el codigo del viaje padre elegido -->
+            <input id="hobligatorio" name="hobligatorio" type="hidden" class="oculto limpiar" /> 
+            <input id="hmcliente_id" name="mcliente_id" type="hidden" class="oculto limpiar" value=""/> 
+        </form>
+    </div>
+</div>
+    
+<?php
+
+echo $this->render ( '/taxis/partials/popupbuscartaxis.phtml' );
+
+$this->JQuery()->Addjavascript ('
+
+    busquedaTaxis();
+    $(document).ready(
+        function() {
+            MultiCliente.initMClienteData('. $this->id_cliente .');
+            solicitarServiciosBuscarTaxis();
+        }
+    );
+
+    $("#agregarviajetaxi").ajaxComplete(
+        function(e, xhr, settings)
+        {
+            if ( settings.url == "/taxis/agregarviajetaximodal" )
+            {
+                solicitarServiciosAgregarViajesTaxiModal();
+            }
+        }
+    );
+
+    $("#agregarviajetaxi").bind( "dialogclose", function(event, ui) {
+        finishLoading();  
+    });
+	
+	// FIX PARA DESPLEGAR LAS OPTIONS COMPLETAS EN IE	
+	if ( $.browser.msie ) {
+		$(function() {
+
+			$(".desdeHasta")
+				.focus(function(){
+					$(this)
+						.data("origWidth", $(this).css("width"))
+						.css("width", "auto");
+				})
+				.blur(function(){
+					$(this).css("width", $(this).data("origWidth"));
+				});
+		});
+	}
+
+');
+echo  $this->JQuery();

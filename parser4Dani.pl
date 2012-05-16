@@ -9,6 +9,8 @@
 #esto es porque al traducir, se toma todo lo de la tercer columna, se hace el correspondiente html o utf encode
 #y se reemplaza por la primer columna, en los casos de javascript cada % es un sub string a reemplazar, dentro de la primer columna.
 #
+#TODO: extenderlo a .php
+#      tiene que tomar los alerts de html y phtml
 use strict;
 use HTML::TreeBuilder 3;
 use HTML::Entities;

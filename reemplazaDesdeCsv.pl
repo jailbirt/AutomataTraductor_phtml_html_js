@@ -16,6 +16,8 @@
 # nombreArchivo_extension.csv
 #
 #
+#TODO: extenderlo a .php
+#      tiene que tomar los alerts de html y phtml
 use strict;
 use HTML::TreeBuilder 3;
 use HTML::Entities;
@@ -104,20 +106,72 @@ sub traduceJavascript
  print OUTPUTFILE $nuevoFuente; 
  close OUTPUTFILE;
 }
+#Traduce cadenas completas SIEMPRE que sea un string mayor a una palabra.
+#La segunda pasada evalua line by line.
 sub traduceHtml
 {
- @csvMatrix=&ordenaLenght; #Ordeno por lenghts strings del csv a traducir.
- my $sourceLines=&levantaArchivoFuente;
- foreach my $row(@csvMatrix){
-	 # Open input file in read mode
-           my $original=$row->[0];
-           my $traducido=encode_entities($row->[2]);
-	   $traducido =~ s/\r//g;
-	   $sourceLines =~ s/$original/$traducido/g;
- }
- open (OUTPUTFILE, ">$archivoFuente");
- print OUTPUTFILE $sourceLines; 
- close OUTPUTFILE;
+  @csvMatrix=&ordenaLenght; #Ordeno por lenghts strings del csv a traducir.
+  my $sourceLines=&levantaArchivoFuente;
+  foreach my $row(@csvMatrix){
+     my $cantidadDePalabras = $row->[0] =~ s/((^|\s)\S)/$1/g;
+     next if ( $cantidadDePalabras == 1 ); #Solo sigo si el string es mayor a una palabra
+     # Open input file in read mode
+     my $original=&remueveCosasDelExcel($row->[0]);
+     my $traducido=&remueveCosasDelExcel($row->[2]);
+     $traducido=encode_entities($traducido);
+     if ($original =~ m/.*\w+.*/g and $traducido =~ m/.*\w+.*/g) {#Si tiene algo de humano
+       $sourceLines =~ s/$original/$traducido/g if ($sourceLines =~ m/$original/ );
+       my $originalSinQuotes ='';
+       $originalSinQuotes = $original;
+       $originalSinQuotes    =~ s/\&quot\;/"/g;
+       $sourceLines =~ s/$originalSinQuotes/$traducido/g if ($sourceLines =~ m/$originalSinQuotes/ );
+       print ">>>>>     $original ||| $originalSinQuotes \n <<<------->>> \n $traducido<<< \n";
+     } 
+  }
+  open (OUTPUTFILE, ">$archivoFuente");
+  print OUTPUTFILE $sourceLines; 
+  close OUTPUTFILE;
+
+  #Vuelvo a levantar el archivo, que se modifico arriba.
+  #Ahora voy por las palabras sueltas. Hay echo de php que rompen lo anterior, de ahi esta chanchada.
+  &retrieveData($archivoFuente,$csv);
+  my $indice = 0;
+  my $nuevoFuente='';
+  foreach my $fuenteRow ( @sourceLines) {
+     my $columna1Limpia='';
+     my $lineaDelFuenteActual=$sourceLines[$indice];#Para trabajar en un string
+     foreach my $rowCsv(@csvMatrix){
+        my $cantidadDePalabras = $rowCsv->[0] =~ s/((^|\s)\S)/$1/g;
+        next if ( $cantidadDePalabras != 1 ); #Solo sigo si el string es mayor a una palabra
+        if ( $lineaDelFuenteActual =~ m/\>\s*\w+\s*\</ig ){ #Solo si es un tag html
+           # Open input file in read mode
+           my $original=&remueveCosasDelExcel($rowCsv->[0]);
+           my $traducido=&remueveCosasDelExcel($rowCsv->[2]);
+           $traducido=encode_entities($traducido);
+           $lineaDelFuenteActual =~ s/$original/$traducido/g if ($lineaDelFuenteActual =~ m/$original/ );
+           my $originalSinQuotes = $original;
+           $originalSinQuotes    =~ s/\&quot\;/"/g;#Algunos html no siguen el standard y tienen " comillas.
+           $lineaDelFuenteActual =~ s/$originalSinQuotes/$traducido/g if ($lineaDelFuenteActual =~ m/$originalSinQuotes/);
+        }
+      }
+     $nuevoFuente.=$lineaDelFuenteActual;#Agrego linea modificada o no.
+     $indice++;
+  }
+  open (OUTPUTFILE, ">$archivoFuente");
+  print OUTPUTFILE $nuevoFuente; 
+  close OUTPUTFILE;
+   
+}
+
+#El excel agrega basura.
+sub remueveCosasDelExcel {
+     # Open input file in read mode
+     my $stringSinBasura=$_[0];
+     $stringSinBasura  =~ s/(^\"|\"$)//g; #Cosas de excel agrego "
+     $stringSinBasura  =~ s/\"\"/"/g;#Cosas de excel agrego ""
+     $stringSinBasura  =~ s/(^\s+|\s+$)//g;#Espacios antes y despues del texto.
+     $stringSinBasura =~ s/\r//g;
+     return $stringSinBasura;
 }
 
 sub levantaArchivoFuente {
@@ -168,11 +222,9 @@ my $line=0;
    foreach my $lineaCsv (@csvLines) { #Por Cada Linea del csv.
       chomp($lineaCsv);
       @columnas=split(/$delimitador/, $lineaCsv);
-      #Agrego las tres columnas a la matrix, solo si estan traducidas.
-      if ($columnas[2] !~ m/^\s*$/g) {
-        #print "[0]=".$columnas[0]." [1]=".$columnas[1]." [2]=".$columnas[2]."\n"; 
+      #Agrego las tres columnas a la matrix, solo si estan traducidas. #si no tiene Nada humanReadable, no agrego.
+      if ( $columnas[2] and $columnas[2] !~ m/^\s*$/g and $columnas[0] =~ m/\w+/ and $columnas[1] =~ m/\w+/ ) {
         push(@{$csvMatrix[$line]}, @columnas);
-      }
-      $line++;
+      }      $line++;
    }
 }
